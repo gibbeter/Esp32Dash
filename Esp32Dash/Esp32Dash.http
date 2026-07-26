@@ -1,0 +1,6 @@
+@Esp32Dash_HostAddress = http://localhost:5162
+
+GET {{Esp32Dash_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

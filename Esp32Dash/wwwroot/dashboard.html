@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <div class="main-layout">
+
+        <div class="container">
+            <h1>
+                <span id="connectionIndicator" class="status-dot disconnected"></span>
+                ESP32 Dashboard
+            </h1>
+
+            <div class="data-card">
+                <p>🌡️ Temperature DHT</p>
+                <p id="dhtTemperatureValue" class="value">--°C</p>
+            </div>
+
+            <div class="data-card">
+                <p>💧 Humidity DHT</p>
+                <p id="dhtHumidityValue" class="value">--%</p>
+            </div>
+
+            <div class="data-card">
+                <p>🌡️ Temperature BME280</p>
+                <p id="bmeTemperatureValue" class="value">--°C</p>
+            </div>
+
+            <div class="data-card">
+                <p>💧 Humidity BME280</p>
+                <p id="bmeHumidityValue" class="value">--%</p>
+            </div>
+
+            <p id="updateTime" class="update-time">Waiting for data...</p>
+        </div>
+
+
+        <div class="chart-panel">
+            <h2>📈 Last 10 Readings</h2>
+            <div class="chart-container">
+                <canvas id="sensorChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+    <!--<div class="data-card">
+        <p>💡 LED State</p>
+        <p id="ledValue" class="value">Unknown</p>
+    </div>-->
+
+    <script type="module" src="js/dashboard-hub.js"></script>
+</body>
+</html>
