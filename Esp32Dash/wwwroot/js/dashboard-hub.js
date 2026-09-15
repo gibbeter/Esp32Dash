@@ -116,8 +116,9 @@ function addDataToChart(data) {
     // Add new data
     sensorChart.data.labels.push(label);
     sensorChart.data.datasets[0].data.push(data.dhtTemperature);
-    sensorChart.data.datasets[1].data.push(data.dhtHumidity);
-    sensorChart.data.datasets[2].data.push(data.bmeTemperature);
+    sensorChart.data.datasets[1].data.push(data.bmeTemperature);
+    sensorChart.data.datasets[2].data.push(data.dhtHumidity);
+    // sensorChart.data.datasets[2].data.push(data.bmeTemperature);
     sensorChart.data.datasets[3].data.push(data.bmeHumidity);
 
     // Keep last 10 points
@@ -139,8 +140,9 @@ function loadChartFromHistory(readings) {
         const label = formatLabel(reading.timestamp);
         sensorChart.data.labels.push(label);
         sensorChart.data.datasets[0].data.push(reading.dhtTemperature);
-        sensorChart.data.datasets[1].data.push(reading.dhtHumidity);
-        sensorChart.data.datasets[2].data.push(reading.bmeTemperature);
+        sensorChart.data.datasets[1].data.push(reading.bmeTemperature);
+        sensorChart.data.datasets[2].data.push(reading.dhtHumidity);
+        // sensorChart.data.datasets[2].data.push(reading.bmeTemperature);
         sensorChart.data.datasets[3].data.push(reading.bmeHumidity);
     });
 
