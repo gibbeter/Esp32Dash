@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "/home/vik/Prog/IOT/Esp32Dash/Esp32Dash/bin/Debug/net8.0/Esp32Dash.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+    {
+    "name": ".NET Core Launch (web)",
+    "type": "coreclr",
+    "request": "launch",
+    "preLaunchTask": "build",
+    "program": "/home/vik/Prog/IOT/Esp32Dash/Esp32Dash/bin/Debug/net8.0/Esp32Dash.dll",
+    "args": [],
+    "cwd": "${workspaceFolder}",
+    "console": "internalConsole",
+    "stopAtEntry": false,
+    "launchSettingsFilePath": "${workspaceFolder}/Esp32Dash/Properties/launchSettings.json",
+    "launchSettingsProfile": "http",
+    "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+    }
+},
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}

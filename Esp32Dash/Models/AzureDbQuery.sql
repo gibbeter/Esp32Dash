@@ -10,17 +10,12 @@ CREATE TABLE [dbo].[SensorReadings] (
     [altitude]          FLOAT            NOT NULL,
     [speed]             FLOAT            NOT NULL,
     [satellites]        INT              NOT NULL,
-    [city]              NVARCHAR(255)    NULL,
-    [country]           NVARCHAR(255)    NULL,
-    [isp]               NVARCHAR(255)    NULL,
-    [ip_address]        NVARCHAR(45)     NULL,
-    [location_source]   NVARCHAR(50)     NULL,
     CONSTRAINT [PK_SensorData] PRIMARY KEY CLUSTERED ([id] ASC)
 );
-GO
 
--- Add default constraints for numeric fields (optional)
-ALTER TABLE [SensorReading] ADD CONSTRAINT DF_SensorData_Altitude DEFAULT 0 FOR [altitude];
-ALTER TABLE [SensorReading] ADD CONSTRAINT DF_SensorData_Speed DEFAULT 0 FOR [speed];
-ALTER TABLE [SensorReading] ADD CONSTRAINT DF_SensorData_Satellites DEFAULT 0 FOR [satellites];
-GO
+ALTER TABLE [SensorReadings] ADD CONSTRAINT DF_SensorData_Altitude DEFAULT 0 FOR [altitude];
+ALTER TABLE [SensorReadings] ADD CONSTRAINT DF_SensorData_Speed DEFAULT 0 FOR [speed];
+ALTER TABLE [SensorReadings] ADD CONSTRAINT DF_SensorData_Satellites DEFAULT 0 FOR [satellites];
+
+CREATE NONCLUSTERED INDEX IX_SensorReadings_Timestamp
+    ON [dbo].[SensorReadings] ([time_stamp] DESC);

@@ -1,0 +1,76 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "/home/vik/Prog/IOT/Esp32Dash/Esp32Dash/Esp32Dash.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "/property:TargetFramework=net8.0"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "clean",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "$/home/vik/Prog/IOT/Esp32Dash/Esp32Dash/Esp32Dash.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "rebuild",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "clean",
+                "build"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "/home/vik/Prog/IOT/Esp32Dash/Esp32Dash/Esp32Dash.csproj",
+                "-c", "Release",
+                "-f", "net8.0",
+                "-o", "${workspaceFolder}/publish"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "/home/vik/Prog/IOT/Esp32Dash/Esp32Dash/Esp32Dash.csproj",
+                "--framework", "net8.0"
+            ],
+            "problemMatcher": "$msCompile",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        }
+    ]
+}

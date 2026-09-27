@@ -51,10 +51,15 @@ namespace Esp32Dash.Models
         public double bmeHumidity { get; set; }
 
         // GPS / Geolocation fields
+        [Column("latitude")]
         public double Latitude { get; set; }
+        [Column("longitude")]
         public double Longitude { get; set; }
+        [Column("altitude")]
         public double Altitude { get; set; }
+        [Column("speed")]
         public double Speed { get; set; }
+        [Column("satellites")]
         public int Satellites { get; set; }
         // [Column("latitude")]
         // public double Latitude { get; set; }

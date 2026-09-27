@@ -147,6 +147,9 @@ function loadChartFromHistory(readings) {
     });
 
     sensorChart.update();
+
+    const last = readings[readings.length - 1];
+    if (last) updateMap(last);
 }
 
 async function loadLatestData() {
@@ -205,9 +208,61 @@ function updateDisplay(data) {
     if (data.bmeHumidity !== undefined) {
         bmeHumidityElement.textContent = data.bmeHumidity.toFixed(1) + "%";
     }
+
+    updateMap(data);
 }
 
+// -------------------- Map (Leaflet) --------------------
+// Fallback center until we get a real GPS fix
+const DEFAULT_CENTER = [51.4779, 0.0015];
 
+const map = L.map('map').setView(DEFAULT_CENTER, 12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+let gpsMarker = null;         // created on first valid fix
+let mapCentered = false;      // so we only auto-center once
+
+function updateMap(data) {
+    // No GPS block in payload
+    if (data.latitude == null || data.longitude == null) return;
+
+    // Ignore "Null Island" / no-fix values
+    if (data.latitude === 0 && data.longitude === 0) return;
+    if (data.satellites === 0) return;
+
+    const lat = data.latitude;
+    const lng = data.longitude;
+    const alt = data.altitude ?? 0;
+    const spd = data.speed ?? 0;
+    const sats = data.satellites ?? 0;
+
+    const popupHtml = `
+        <b>Location Details</b><br>
+        Lat: ${lat.toFixed(6)}<br>
+        Lng: ${lng.toFixed(6)}<br>
+        Altitude: ${alt.toFixed(1)} m<br>
+        Speed: ${spd.toFixed(1)} km/h<br>
+        Satellites: ${sats}
+    `;
+
+    if (!gpsMarker) {
+        // First valid fix — create the marker
+        gpsMarker = L.marker([lat, lng]).addTo(map);
+        gpsMarker.bindPopup(popupHtml).openPopup();
+    } else {
+        gpsMarker.setLatLng([lat, lng]);
+        gpsMarker.getPopup().setContent(popupHtml);
+    }
+
+    if (!mapCentered) {
+        map.setView([lat, lng], 15);
+        mapCentered = true;
+    } else {
+        map.panTo([lat, lng]);
+    }
+}
 
 // SignalR server url
 const connection = new signalR.HubConnectionBuilder()
