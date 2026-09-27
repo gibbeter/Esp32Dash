@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #32a852 0%, #020302 100%);
+    background: linear-gradient(135deg, #ecedec 0%, #4c4d4c 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -17,7 +17,7 @@ body {
 .main-layout {
     display: flex;
     gap: 20px;
-    max-width: 900px;
+    max-width: 1500px;
     width: 100%;
     align-items: stretch;
 }
@@ -53,6 +53,15 @@ body {
     height: 500px;
 }
 
+.map-panel {
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    flex: 1;
+    min-width: 300px;
+    /* height: 500px; */
+}
+
 h1 {
     text-align: center;
     color: #333;
@@ -69,9 +78,9 @@ h1 {
     transition: transform 0.3s ease;
 }
 
-.data-card:hover {
+/* .data-card:hover {
     transform: translateY(-3px);
-}
+} */
 
 .data-card p:first-child {
     font-size: 16px;

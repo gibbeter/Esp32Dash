@@ -8,6 +8,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
@@ -21,17 +24,17 @@
             </h1>
 
             <div class="data-card">
-                <p>🌡️ Temperature DHT</p>
+                <p>Temperature DHT</p>
                 <p id="dhtTemperatureValue" class="value">--°C</p>
             </div>
 
             <div class="data-card">
-                <p>💧 Humidity DHT</p>
+                <p>Humidity DHT</p>
                 <p id="dhtHumidityValue" class="value">--%</p>
             </div>
 
             <div class="data-card">
-                <p>🌡️ Temperature BME280</p>
+                <p>Temperature BME280</p>
                 <p id="bmeTemperatureValue" class="value">--°C</p>
             </div>
 
@@ -45,18 +48,19 @@
 
 
         <div class="chart-panel">
-            <h2>📈 Last 10 Readings</h2>
+            <h2>Last 10 Readings</h2>
             <div class="chart-container">
                 <canvas id="sensorChart"></canvas>
             </div>
         </div>
+
+        <div id="map" class="map-panel"></div>
 
     </div>
     <!--<div class="data-card">
         <p>💡 LED State</p>
         <p id="ledValue" class="value">Unknown</p>
     </div>-->
-
     <script type="module" src="js/dashboard-hub.js"></script>
 </body>
 </html>
